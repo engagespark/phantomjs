@@ -8,16 +8,6 @@ In includes these changes:
 
 * 5f663b8b39138c0510a7acac153a86492373988f [fixes](https://github.com/ariya/phantomjs/issues/12506#issuecomment-61698339) file-uploads by skipping gesture-processing. Whenever 2.0.1 gets released, this fix should be included already.
 
-You might get a weird error about file-uploads:
-
-    E               WebDriverException: Message: Error - incompatible type of argument(s) in call to _uploadFile(); candidates were
-    E                   _uploadFile(QString,QStringList)
-
-In this case you need to disable the "_is_remote" property of the RemoteDriver for the duration of calling `sendKeys`.
-By this you skip sending the files to be uploaded to PhantomJS via the Webdriver protocol.
-Instead, only the path is sent to the browser, which is the normal behavior.
-Unfortuantely, this entails that PhantomJS and the Seleniumtests must run on the same server, and you likely must send an absolute path.
-
 ---
 
 # [PhantomJS](http://phantomjs.org) - Scriptable Headless WebKit
